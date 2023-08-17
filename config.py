@@ -86,11 +86,6 @@ keys = [
     Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 sset Master 1- unmute")),
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 sset Master 1+ unmute")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -5")),
-    Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight +5")),
-    # Key([], 'XF86MonBrightnessUp',   lazy.function(backlight('inc'))),
-    # Key([], 'XF86MonBrightnessDown', lazy.function(backlight('dec'))),
-
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -121,10 +116,10 @@ for i in groups:
 
 layouts = [
     # layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
-    layout.Max(),
-    # Try more layouts by unleashing below layouts.
     layout.MonadTall(margin = 8,
                      border_focus = '#5e81ac'),
+    layout.Max(),
+    # Try more layouts by unleashing below layouts.
     layout.Tile(margin = 8,
                 border_focus = '#5e81ac'),
     layout.Stack(num_stacks=2,
@@ -141,7 +136,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="sans",
+    font="Hack",
     fontsize=12,
     padding=3,
 )
@@ -151,44 +146,34 @@ screens = [
     Screen(
         top=bar.Bar(
             [
+                widget.TextBox(text = '',
+                               fontsize = 35),
+                widget.Spacer(length = 3),
                 widget.CurrentLayout(),
                 widget.GroupBox(),
                 widget.Prompt(),
-                widget.Sep(
-                    linewidth = 1,
-                    padding = 10,
-                ),
                 widget.WindowName(),
-
-                widget.Sep(
-                    linewidth = 1,
-                    padding = 10,
-                ),
-                widget.Battery(),
-
-                widget.Sep(
-                    linewidth = 1,
-                    padding = 10,
-                ),
-                widget.CPU(),
-
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                #widget.TextBox("default config", name="default"),
-                # widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                # widget.StatusNotifier(),
+                widget.TextBox(text = '',
+                               fontsize = 40),
+                widget.Spacer(length = 3),
+                widget.Battery(format = '{percent:2.0%}'),
+                widget.Spacer(length = 3),
                 widget.Systray(),
+                widget.TextBox(text = '󱄠',
+                               fontsize = 35),
                 widget.Volume(),
-                widget.Backlight(backlight_name="intel_backlight"),
+                widget.Spacer(length = 5),
+                widget.TextBox(text = '',
+                               fontsize = 40),
+                widget.Wlan(),
+                widget.Spacer(length = 5),
+                widget.TextBox(text = '',
+                               fontsize = 30),
+                widget.Spacer(length = 3),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-                widget.QuickExit(),
+                widget.Spacer(length = 10),
             ],
-            24,
+            25,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
