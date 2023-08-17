@@ -137,7 +137,7 @@ layouts = [
 
 widget_defaults = dict(
     font="Hack",
-    fontsize=12,
+    fontsize=14,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
@@ -147,9 +147,8 @@ screens = [
         top=bar.Bar(
             [
                 widget.TextBox(text = '',
-                               fontsize = 35),
+                               fontsize = 45),
                 widget.Spacer(length = 3),
-                widget.CurrentLayout(),
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
@@ -171,9 +170,10 @@ screens = [
                                fontsize = 30),
                 widget.Spacer(length = 3),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+                widget.CurrentLayoutIcon(fontsize = 9),
                 widget.Spacer(length = 10),
             ],
-            25,
+            27,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
